@@ -1,7 +1,36 @@
-<!doctype html>
-<title>Hello from Flask</title>
-{% if response %}
-  <h1>Hello {{ response }}!</h1>
-{% else %}
-  <h1>Hello, World!</h1>
-{% endif %}
+<!DOCTYPE html>
+<head>
+<title>Dashboard</title>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+
+<body onload=display_timeanddate();>
+<div class="fullpage">
+  <div class="info">
+    <div class="timeandday">
+      <h1 id='time'>time</h1>
+      <h2 id='day'>day</h2>
+    </div>
+    <div class="weather"></div>
+    <div class="calendar"></div>
+  </div>
+  <div class="stocks">
+    <div class="stock">1</div>
+    <div class="stock">2</div>
+    <div class="stock">3</div>
+    <div class="stock">4</div>
+    <div class="stock">5</div>
+    <div class="stock">6</div>
+    <div class="stock">7</div>
+    <div class="stock">8</div>
+    <div class="stock">9</div>
+    <div class="stock">10</div>
+    <div class="stock">11</div>
+    <div class="stock">12</div>
+  </div>
+</div>
+<h1 id='time'>time</h1>
+<h2 id='day'>day</h2>
+
+</body>
+</html>
