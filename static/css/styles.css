@@ -1,0 +1,46 @@
+body, html {
+        height: 100%;
+        margin: 0px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.fullpage {
+        display: grid;
+        grid-template-columns: 480px 1440px;
+}
+
+.info{
+        display: grid;
+        background-color: #292929;
+        text-align: center;
+        color: white;
+}
+
+#time{
+        font-size: 45px;
+}
+
+#day{
+        font-size: 35px;
+}
+
+#weather{
+        font-size: 35px;
+}
+
+#stocks{
+        display: grid;
+        grid-template-columns: 360px 360px 360px 360px;
+        grid-auto-rows: 360px;
+        color: white;
+        font-size: 40px;
+}
+
+.positivePercent{
+        background-color: green;
+}
+
+.negativePercent{
+        background-color: red;
+}
+

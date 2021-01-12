@@ -1,3 +1,8 @@
+function load_data(){
+        display_timeanddate();
+        display_allstocks();
+}
+
 function display_c(){
         var refresh=1000; // Refresh rate in milli seconds
         mytime=setTimeout('display_timeanddate()',refresh);
@@ -27,4 +32,28 @@ function display_timeanddate() {
         document.getElementById('time').innerHTML = myTime;
         document.getElementById('day').innerHTML = currWeekday; 
         display_c();
+}
+
+function display_s(){
+        var refresh=10000; // Refresh rate in milli seconds
+        mytime=setTimeout('display_allstocks()',refresh);
+}
+
+function display_allstocks(){
+        var stocks = document.getElementById("stocks").querySelectorAll(".stock");
+        var min = -10;
+        var max = 10;
+
+        for (i = 0; i < stocks.length; ++i) {
+                var random = Math.floor(Math.random() * (max - min + 1)) + min;
+                if (random > 0){
+                        stocks[i].className = "stock positivePercent";
+                }
+                else{
+                        stocks[i].className = "stock negativePercent";
+                }
+                stocks[i].innerHTML = random;
+        }
+
+        display_s();
 }

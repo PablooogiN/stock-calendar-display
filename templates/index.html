@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <head>
 <title>Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </head>
 
-<body onload=display_timeanddate();>
+<body onload=load_data();>
 <div class="fullpage">
   <div class="info">
     <div class="timeandday">
       <h1 id='time'>time</h1>
       <h2 id='day'>day</h2>
     </div>
-    <div class="weather"></div>
-    <div class="calendar"></div>
+    <div class="weather">45°</div>
+    <div class="calendar">
+      <img src="/static/img/calendar.jpg">
+    </div>
   </div>
-  <div class="stocks">
-    <div class="stock">1</div>
+  <div id="stocks">
+    <div class="stock">
+      <h3 id="test"></h3>
+    </div>
     <div class="stock">2</div>
     <div class="stock">3</div>
     <div class="stock">4</div>
@@ -29,8 +34,6 @@
     <div class="stock">12</div>
   </div>
 </div>
-<h1 id='time'>time</h1>
-<h2 id='day'>day</h2>
 
 </body>
 </html>
