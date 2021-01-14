@@ -18,20 +18,13 @@
     </div>
   </div>
   <div id="stocks">
-    <div class="stock">
-      <h3 id="test"></h3>
-    </div>
-    <div class="stock">2</div>
-    <div class="stock">3</div>
-    <div class="stock">4</div>
-    <div class="stock">5</div>
-    <div class="stock">6</div>
-    <div class="stock">7</div>
-    <div class="stock">8</div>
-    <div class="stock">9</div>
-    <div class="stock">10</div>
-    <div class="stock">11</div>
-    <div class="stock">12</div>
+    {% for stock in stockList %}
+      <div class="stock">
+        <p class="ticker">{{stock}}</p>
+        <p class="price"></p>
+        <p class="percent"></p>
+      </div>
+    {% endfor %}
   </div>
 </div>
 

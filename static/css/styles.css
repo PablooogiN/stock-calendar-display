@@ -34,6 +34,7 @@ body, html {
         grid-auto-rows: 360px;
         color: white;
         font-size: 40px;
+        background-color: gray;
 }
 
 .positivePercent{

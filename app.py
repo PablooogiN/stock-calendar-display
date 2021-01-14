@@ -7,6 +7,7 @@ app = Flask(__name__)
 def hello_world():
 
     # Write the stock ticker symbol for the 12 stocks you want to track
+    # stockList = ["spy", "qqq"]
     stockList = ["spy", "qqq","abnb","crsr","mu","rcl","ccl","nclh","ual","ba","nvda","abcl"]
 
     # response = requests.get("https://sandbox.iexapis.com/stable/stock/twtr/quote/latestPrice?token=Tsk_9980ed4d116a440cb98678f078a7c7c1")

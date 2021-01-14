@@ -35,25 +35,44 @@ function display_timeanddate() {
 }
 
 function display_s(){
-        var refresh=10000; // Refresh rate in milli seconds
+        var refresh=5*60000;
         mytime=setTimeout('display_allstocks()',refresh);
 }
 
-function display_allstocks(){
-        var stocks = document.getElementById("stocks").querySelectorAll(".stock");
-        var min = -10;
-        var max = 10;
+const timer = ms => new Promise(res => setTimeout(res, ms))
 
-        for (i = 0; i < stocks.length; ++i) {
-                var random = Math.floor(Math.random() * (max - min + 1)) + min;
-                if (random > 0){
-                        stocks[i].className = "stock positivePercent";
-                }
-                else{
-                        stocks[i].className = "stock negativePercent";
-                }
-                stocks[i].innerHTML = random;
+var forEach = async function (array, callback, scope) {
+        for (var i = 0; i < array.length; i++) {
+          callback.call(scope, i, array[i]); // passes back stuff we need
+          await timer(1000);
         }
+};
+
+function display_allstocks(){
+        console.log("##Calling Stock API##")
+        var myNodeList = document.getElementById("stocks").querySelectorAll(".stock");
+
+        forEach(myNodeList, function (index, value){
+                url = "https://sandbox.iexapis.com/stable/stock/"+value.childNodes[1].innerHTML+"/quote?displayPercent=true&token=Tpk_29f6842dac974217b52fc6e42ddfb6f0"
+                fetch(url)
+                        .then(response => response.json())
+                        .then(function(data){
+                                console.log(data)
+                                // console.log(value.childNodes[1].innerHTML)
+                                latestPrice = data["latestPrice"];
+                                changePercent = data["changePercent"];
+                                value.childNodes[3].innerHTML = latestPrice;
+                                value.childNodes[5].innerHTML = changePercent + "%";
+                                if (changePercent > 0){
+                                        value.className = "stock positivePercent";
+                                }
+                                else{
+                                        value.className = "stock negativePercent";
+                                }
+                        }
+                );
+                // console.log(index, value); // passes index + value back!
+        });
 
         display_s();
 }
