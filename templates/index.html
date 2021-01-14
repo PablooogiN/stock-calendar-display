@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <head>
 <title>Dashboard</title>
+<script type="text/javascript">
+  var IEX_DEBUG_API_KEY = {{ API_KEYS.IEX_DEBUG_API_KEY |tojson }}
+</script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </head>
