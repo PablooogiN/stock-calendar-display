@@ -1,5 +1,6 @@
 const timer = ms => new Promise(res => setTimeout(res, ms))
-var MARKET_OPEN = false;
+let MARKET_OPEN = false;
+var myVar = setInterval(display_s, 5*60000);
 
 function load_data(){
         display_timeanddate();
@@ -26,15 +27,19 @@ function display_timeanddate() {
         //Check if market is open
         if(myDay > 0 & myDay < 6){
                 //time zone bug
-                if(hours >= 8 & hours <= 15){
+                if(hours >= 8 & hours < 10){//hours >= 8 & hours < 10
                         MARKET_OPEN=true;
+                        // console.log("Market is OPEN")
                 }
                 else{
-                        MARKET_OPEN=false;
+                        
+                        clearInterval(myVar);
+                        // console.log("Market is closed")
                 }
         }
         else{
-                MARKET_OPEN=false;
+                clearInterval(myVar);
+                // console.log("Market is closed")
         }
         
         // get hour value.
@@ -51,11 +56,12 @@ function display_timeanddate() {
 }
 
 function display_s(){
-        var refresh=5*60000;
-        if(MARKET_OPEN=true){
-                console.log("Market is open")
-                mytime=setTimeout('display_allstocks()',refresh);
-        }
+        // var refresh=5*60000;
+        // if(MARKET_OPEN){
+        //         console.log("Market is open")
+        //         mytime=setInterval('display_allstocks()',30000);
+        // }
+        display_allstocks();
 }
 
 var forEach = async function (array, callback, scope) {
@@ -66,25 +72,29 @@ var forEach = async function (array, callback, scope) {
 };
 
 function display_allstocks(){
-        console.log("##Calling Stock API##")
+        console.log("##Getting Stock Prices##")
         var myNodeList = document.getElementById("stocks").querySelectorAll(".stock");
 
         forEach(myNodeList, function (index, value){
-                url = "https://sandbox.iexapis.com/stable/stock/"+value.childNodes[1].innerHTML+"/quote?displayPercent=true&token=Tpk_29f6842dac974217b52fc6e42ddfb6f0"
+                console.log(IEX_DEBUG_API_KEY)
+                url = "https://cloud.iexapis.com/stable/stock/"+value.childNodes[1].innerHTML+"/quote?displayPercent=true&token=" + IEX_DEBUG_API_KEY
                 fetch(url)
                         .then(response => response.json())
                         .then(function(data){
-                                console.log(data)
+                                // console.log(data)
                                 // console.log(value.childNodes[1].innerHTML)
                                 latestPrice = data["latestPrice"];
                                 changePercent = Math.round((data["changePercent"] + Number.EPSILON) * 100) / 100;
                                 value.childNodes[3].innerHTML = "$"+latestPrice;
-                                value.childNodes[5].innerHTML = changePercent + "%";
+                                value.childNodes[5].lastElementChild.innerHTML = changePercent + "%";
+                                console.log(value);
                                 if (changePercent > 0){
                                         value.className = "stock positivePercent";
+                                        value.childNodes[5].firstElementChild.className = "arrow rotate90";
                                 }
                                 else{
                                         value.className = "stock negativePercent";
+                                        value.childNodes[5].firstElementChild.className = "arrow";
                                 }
                         }
                 );
@@ -92,5 +102,5 @@ function display_allstocks(){
                 // console.log(index, value); // passes index + value back!
         });
 
-        display_s();
+        // display_s();
 }

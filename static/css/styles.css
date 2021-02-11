@@ -38,6 +38,7 @@ body, html {
         color: white;
         font-size: 40px;
         background-color: gray;
+        text-align: center;
 }
 
 .positivePercent{
@@ -48,3 +49,25 @@ body, html {
         background-color: red;
 }
 
+.arrow{
+        padding-left: 60px;
+        padding-right: 20px;
+        float:left; 
+        height:70px;
+        width:70px;
+}
+
+.rotate90 {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
+        padding-left: 20px !important;
+        padding-right: 60px !important;
+}
+
+.container_arrow{
+        display: inline;
+        text-align: left;
+}
