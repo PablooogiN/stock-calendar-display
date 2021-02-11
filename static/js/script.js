@@ -1,6 +1,6 @@
 const timer = ms => new Promise(res => setTimeout(res, ms))
 let MARKET_OPEN = false;
-var myVar = setInterval(display_s, 5*60000);
+var myVar = setInterval(display_allstocks, 5*60000);
 
 function load_data(){
         display_timeanddate();
@@ -27,7 +27,7 @@ function display_timeanddate() {
         //Check if market is open
         if(myDay > 0 & myDay < 6){
                 //time zone bug
-                if(hours >= 8 & hours < 10){//hours >= 8 & hours < 10
+                if(hours > 8 & hours < 15){//hours >= 8 & hours < 10
                         MARKET_OPEN=true;
                         // console.log("Market is OPEN")
                 }
@@ -53,15 +53,6 @@ function display_timeanddate() {
         document.getElementById('time').innerHTML = myTime;
         document.getElementById('day').innerHTML = currWeekday;
         display_c();
-}
-
-function display_s(){
-        // var refresh=5*60000;
-        // if(MARKET_OPEN){
-        //         console.log("Market is open")
-        //         mytime=setInterval('display_allstocks()',30000);
-        // }
-        display_allstocks();
 }
 
 var forEach = async function (array, callback, scope) {
@@ -101,6 +92,4 @@ function display_allstocks(){
                 // console.log(IEX_DEBUG_API_KEY);
                 // console.log(index, value); // passes index + value back!
         });
-
-        // display_s();
 }
