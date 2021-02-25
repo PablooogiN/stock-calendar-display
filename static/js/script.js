@@ -5,6 +5,7 @@ var myVar = setInterval(display_allstocks, 5*60000);
 function load_data(){
         display_timeanddate();
         display_allstocks();
+        display_weather();
 }
 
 function display_c(){
@@ -67,7 +68,7 @@ function display_allstocks(){
         var myNodeList = document.getElementById("stocks").querySelectorAll(".stock");
 
         forEach(myNodeList, function (index, value){
-                console.log(IEX_DEBUG_API_KEY)
+                // console.log(IEX_DEBUG_API_KEY)
                 url = "https://cloud.iexapis.com/stable/stock/"+value.childNodes[1].innerHTML+"/quote?displayPercent=true&token=" + IEX_DEBUG_API_KEY
                 fetch(url)
                         .then(response => response.json())
@@ -92,4 +93,26 @@ function display_allstocks(){
                 // console.log(IEX_DEBUG_API_KEY);
                 // console.log(index, value); // passes index + value back!
         });
+}
+
+function display_w(){
+        var refresh=5*6000; // Refresh rate in milli seconds
+        mytime=setTimeout('display_weather()',refresh);
+}
+
+function display_weather() {
+        latitude = 30.622370
+        longitude = -96.325851
+        url = "https://api.openweathermap.org/data/2.5/onecall?lat="+latitude+"&lon="+longitude+"&units=imperial&appid="+WEATHER_API_KEY
+        fetch(url)
+                        .then(response => response.json())
+                        .then(function(data){
+                                console.log(data);
+                                document.getElementById('currentweather').innerHTML = data["current"]["temp"]+"°";
+                                day0 = data["daily"][0]["temp"]["day"]+"°";
+                                day1 = data["daily"][1]["temp"]["day"]+"°";
+                                document.getElementById('weekweather').innerHTML = day0 + " " + day1;
+                                document.getElementById('weathericon').className = "owf owf-"+data["current"]["weather"][0]["id"]+" owf-5x"
+                        }
+                );
 }

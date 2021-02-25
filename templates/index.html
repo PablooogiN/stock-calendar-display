@@ -3,8 +3,10 @@
 <title>Dashboard</title>
 <script type="text/javascript">
   var IEX_DEBUG_API_KEY = {{ API_KEYS.IEX_DEBUG_API_KEY | tojson }}
+  var WEATHER_API_KEY = {{ API_KEYS.WEATHER_API_KEY | tojson }}
 </script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/owfont-regular.css') }}">
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </head>
 
@@ -15,9 +17,13 @@
       <h1 id='time'>time</h1>
       <h2 id='day'>day</h2>
     </div>
-    <div class="weather">45°</div>
+    <div class="weather">
+      <i id='weathericon' class="owf owf-803 owf-5x"></i>
+      <h1 id='currentweather'></h1>
+      <h1 id='weekweather'></h1>
+    </div>
     <div class="calendar">
-      <img src="/static/img/calendar.jpg">
+      <!-- <img src="/static/img/calendar.jpg"> -->
     </div>
   </div>
   <div id="stocks">

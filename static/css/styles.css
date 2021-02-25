@@ -71,3 +71,7 @@ body, html {
         display: inline;
         text-align: left;
 }
+
+#weathericon{
+        font-size: 10em;
+}

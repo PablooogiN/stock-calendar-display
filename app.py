@@ -10,7 +10,8 @@ def hello_world():
     # Write the stock ticker symbol for the 12 stocks you want to track
     stockList = ["GME", "ABNB","MU","CRSR","AMC","RCL","BB","CCL","UAL","NCLH","NOK","SPPI"]
     IEX_DEBUG_API_KEY = os.environ.get("IEX_DEBUG_API_KEY")
-    API_KEYS = {'IEX_DEBUG_API_KEY': IEX_DEBUG_API_KEY}
+    WEATHER_API_KEY = os.environ.get("WEATHER_API_KEY")
+    API_KEYS = {'IEX_DEBUG_API_KEY': IEX_DEBUG_API_KEY, 'WEATHER_API_KEY': WEATHER_API_KEY}
 
     # response = requests.get("https://sandbox.iexapis.com/stable/stock/twtr/quote/latestPrice?token=Tsk_9980ed4d116a440cb98678f078a7c7c1")
     # response = requests.get("api.openweathermap.org/data/2.5/weather?q=houston&appid=d356074d2d6255803c9974a7ca75b175")
