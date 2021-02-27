@@ -61,7 +61,7 @@ function display_timeanddate() {
         document.getElementById('ampm').innerHTML = ampm;
         // console.log(myDate)
         document.getElementById('day').innerHTML = currWeekday + " " + currMonth + " " + myDayDate;
-        // display_c();
+        display_c();
 }
 
 var forEach = async function (array, callback, scope) {
