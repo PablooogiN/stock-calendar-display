@@ -4,7 +4,7 @@ var myVar = setInterval(display_allstocks, 5*60000);
 
 function load_data(){
         display_timeanddate();
-        // display_allstocks();
+        display_allstocks();
         display_weather();
 }
 
