@@ -17,9 +17,16 @@ body, html {
 }
 
 #time{
-        font-size: 95px;
-        padding-top: 50px;
+        font-size: 150px;
+        /* padding-top: 50px; */
         margin-bottom: auto;
+        float: right;
+}
+
+#ampm{
+        padding-top: 125px;
+        /* float: left;
+        font-size: 20px; */
 }
 
 #day{
@@ -73,5 +80,10 @@ body, html {
 }
 
 #weathericon{
-        font-size: 10em;
+        font-size: 15em;
+}
+
+#currentweather{
+        margin-top: 0px;
+        font-size: 75px;
 }

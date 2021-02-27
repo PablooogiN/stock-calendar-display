@@ -4,7 +4,7 @@ var myVar = setInterval(display_allstocks, 5*60000);
 
 function load_data(){
         display_timeanddate();
-        display_allstocks();
+        // display_allstocks();
         display_weather();
 }
 
@@ -14,8 +14,10 @@ function display_c(){
 }
 
 function display_timeanddate() {
-        var myDate = new Date(); 
+        var myDate = new Date();
+        var myMonth = myDate.getMonth();
         var myDay = myDate.getDay();
+        var myDayDate = myDate.getDate();
         var hours = myDate.getHours();
         var minutes = myDate.getMinutes();
         
@@ -23,7 +25,11 @@ function display_timeanddate() {
         var weekday = ['Sunday', 'Monday', 'Tuesday', 
             'Wednesday', 'Thursday', 'Friday', 'Saturday' 
         ];
+        var month = [ "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+        ];
         var currWeekday = weekday[myDay]
+        var currMonth = month[myMonth]
 
         //Check if market is open
         if(myDay > 0 & myDay < 6){
@@ -49,11 +55,13 @@ function display_timeanddate() {
         hours = hours ? hours : 12; 
          
         minutes = minutes < 10 ? '0' + minutes : minutes; 
-        var myTime = hours + ":" + minutes + " " + ampm;
+        var myTime = hours + ":" + minutes;
 
         document.getElementById('time').innerHTML = myTime;
-        document.getElementById('day').innerHTML = currWeekday;
-        display_c();
+        document.getElementById('ampm').innerHTML = ampm;
+        // console.log(myDate)
+        document.getElementById('day').innerHTML = currWeekday + " " + currMonth + " " + myDayDate;
+        // display_c();
 }
 
 var forEach = async function (array, callback, scope) {
@@ -109,10 +117,11 @@ function display_weather() {
                         .then(function(data){
                                 console.log(data);
                                 document.getElementById('currentweather').innerHTML = data["current"]["temp"]+"°";
-                                day0 = data["daily"][0]["temp"]["day"]+"°";
-                                day1 = data["daily"][1]["temp"]["day"]+"°";
-                                document.getElementById('weekweather').innerHTML = day0 + " " + day1;
+                                // day0 = data["daily"][0]["temp"]["day"]+"°";
+                                // day1 = data["daily"][1]["temp"]["day"]+"°";
+                                // document.getElementById('weekweather').innerHTML = day0 + " " + day1;
                                 document.getElementById('weathericon').className = "owf owf-"+data["current"]["weather"][0]["id"]+" owf-5x"
                         }
                 );
+        display_w();
 }
